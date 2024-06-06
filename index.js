@@ -72,6 +72,21 @@ async function viewAllDepartments() {
     activateApp();
 }
 
+async function viewAllRoles() {
+    const roles = await db.query(`
+        SELECT
+            role.id,
+            title,
+            department.name AS "department_name",
+            salary
+        FROM role
+        INNER JOIN department 
+        ON role.department_id =department.id;
+    `)
+}
+
+
+
 
 
 
