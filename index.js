@@ -63,5 +63,11 @@ switch (options.options) {
         return;      
     }
 }
+
+async function viewAllDepartments() {
+    const departments = await db.query("SELECT * FROM department");
+    const table = new Table (TABLE_HEADERS.DEPARTMENTS);
+    departments.forEach(row => table.push([row.id, row.name]));
+}
     
 
