@@ -105,6 +105,18 @@ async function viewAllEmployeees() {
         LEFT JOIN employee AS manager
             ON employee.manager_id = manager.id;
     `);
+    
+    const table = new Table(TABLE_HEADERS.EMPLOYEES);
+    employees.forEach(row => {
+        if (row.manager === null) {
+            row.manager = "None";
+        }
+        table.push([row.id, row.first_name, row.last_name, row.title, row.department_name, row.salary, row.manager])
+    });
+    console.log(table.toString());
+    activateApp();
+
+    activateApp()
 }
 
 
