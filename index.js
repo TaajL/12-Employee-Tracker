@@ -1,6 +1,7 @@
 const inquirer = require("inquirer");
 const mysql = require("mysql");
 const table = require("cli-table3");
+const { default: Choice } = require("inquirer/lib/objects/choice");
 
 const db = mysql.createConnection({
     host: "localhost",
@@ -34,6 +35,33 @@ async function activateApp() {
         ] 
     }
 ]);
-    
 
+switch (options.options) {
+    case "View All Departments":
+        viewAllDepartments();
+         break;
+    case "Add a Departments":
+        addADepartments();
+        break;
+    case "View All Roles":
+        viewAllRoles();
+         break;
+    case "Add A Role":
+        addARole();
+        break;
+    case "View All Employees":
+         viewAllEmployeees();
+        break;
+    case "Add A Employee":
+         addAEmployee();
+        break;
+    case "Update An Employee Role":
+         updateAnEmployeeRole();
+        break;
+    default: 
+        console.log("Employee Manager App Here for You!")
+        return;      
+    }
+}
+    
 
