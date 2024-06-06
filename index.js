@@ -80,7 +80,7 @@ async function viewAllRoles() {
             department.name AS "department_name",
             salary
         FROM role
-        INNER JOIN department 
+        INNER JOIN department
         ON role.department_id =department.id;
     `);
     const table = new Table(TABLE_HEADERS.ROLES);
@@ -93,12 +93,12 @@ async function viewAllEmployees() {
     const Employees = await db.query(`
         SELECT
             employee.id,
-            employye.first_name,
+            employee.first_name,
             employee.last_name,
             role.title,
             department.name AS "department_name",
-            role.salary
-            CONCAT(manager.first_name," ", manger.last_name) AS manager
+            role.salary,
+            CONCAT(manager.first_name," ", manager.last_name) AS manager
         FROM employee
         INNER JOIN role
             ON employee.role_id = role.id
