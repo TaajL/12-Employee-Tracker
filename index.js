@@ -1,13 +1,13 @@
 const inquirer = require("inquirer");
 const mysql = require("mysql");
-const table = require("cli-table3");
+const Table = require("cli-table3");
 const { default: Choice } = require("inquirer/lib/objects/choice");
 
 const db = mysql.createConnection({
     host: "localhost",
     user: "root",
     password:"....",
-    database: "employee_tracker";
+    database: "employee_tracker"
 });
 console.log("employee_tracker database connected")
 
@@ -22,7 +22,7 @@ async function activateApp() {
         {
         name: "options",
         type: "list",
-        message: "Please make a selection"
+        message: "Please make a selection",
         choices: [
             "View All Departments",
             "Add a Department",
@@ -31,7 +31,7 @@ async function activateApp() {
             "View All Employees",
             "Add An Employee",
             "Update An Employee Role",
-            "End"
+            "End",
         ] 
     }
 ]);
@@ -40,7 +40,7 @@ switch (options.options) {
     case "View All Departments":
         viewAllDepartments();
          break;
-    case "Add a Departments":
+    case "Add a Department":
         addADepartments();
         break;
     case "View All Roles":
@@ -50,10 +50,10 @@ switch (options.options) {
         addARole();
         break;
     case "View All Employees":
-         viewAllEmployeees();
+         viewAllEmployees();
         break;
-    case "Add A Employee":
-         addAEmployee();
+    case "Add An Employee":
+         addAnEmployee();
         break;
     case "Update An Employee Role":
          updateAnEmployeeRole();
@@ -89,7 +89,7 @@ async function viewAllRoles() {
     activateApp();
 }
 
-async function viewAllEmployeees() {
+async function viewAllEmployees() {
     const Employees = await db.query(`
         SELECT
             employee.id,
