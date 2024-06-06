@@ -89,6 +89,25 @@ async function viewAllRoles() {
     activateApp();
 }
 
+async function viewAllEmployeees() {
+    const Employees = await db.query(`
+        SELECT
+            employee.id,
+            employye.first_name,
+            employee.last_name,
+            role.title,
+            department.name AS "department_name",
+            role.salary
+            CONCAT(manager.first_name," ", manger.last_name) AS manager
+        FROM employee
+        INNER JOIN role
+            ON employee.role_id = role.id
+        LEFT JOIN employee AS manager
+            ON employee.manager_id = manager.id;
+    `);
+}
+
+
 
 
 
