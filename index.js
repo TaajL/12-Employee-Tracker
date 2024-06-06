@@ -82,8 +82,15 @@ async function viewAllRoles() {
         FROM role
         INNER JOIN department 
         ON role.department_id =department.id;
-    `)
+    `);
+    const table = new Table(TABLE_HEADERS.ROLES);
+    roles.forEach(row => table.push([row.id, row.title, row.department_name, row.salary]));
+    console.log(table.toString());
+    activateApp();
 }
+
+
+
 
 
 
