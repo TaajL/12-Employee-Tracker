@@ -16,5 +16,24 @@ const TABLE_HEADERS ={
     EMPLOYEES: ["Employee ID", "First Name", "Last Name", "Jobe Title"],
 };
 
+async function activateApp() {
+    const options = await inquirer.prompt ([
+        {
+        name: "options",
+        type: "list",
+        message: "Please make a selection"
+        choices: [
+            "View All Departments",
+            "Add a Department",
+            "View All Roles",
+            "Add A Role",
+            "View All Employees",
+            "Add An Employee",
+            "Update An Employee Role",
+            "End"
+        ] 
+    }
+]);
+    
 
 
