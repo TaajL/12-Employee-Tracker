@@ -152,8 +152,30 @@ try {
 
 async function addARole() {
     const role = await inquirer.prompt([
-        
-    ])
+        {
+            name: "title",
+            type: "input",
+            message: "Enter role title"
+        },
+        {
+            name: "salary",
+            type: "number",
+            message: "Enter role salary"
+        },
+        {
+            name: "department_id",
+            type: "number",
+            message: "Enter department ID"
+        }
+    ]);
+
+    try {
+        await db.query("INSERT INTO role SET ?", role);
+        console.log("Role Added Successfully!");
+        activateApp();
+    } catch (err) {
+        console.log(err)
+        }
 }
 
 
