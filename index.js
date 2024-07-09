@@ -178,6 +178,40 @@ async function addARole() {
         }
 }
 
+async function addAnEmployee() {
+    const role = await inquirer.prompt([
+        {
+            name: "first_name",
+            type: "input",
+            message: "Enter employee first name"
+        },
+        {
+            name: "last_name",
+            type: "input",
+            message: "Enter employee last name"
+        },
+        {
+            name: "role_id",
+            type: "number",
+            message: "Enter role ID"
+        },
+        {
+            name: "manager_id",
+            type: "number",
+            message: "Enter manager ID (optional)"
+        }
+    ]);
+
+    try {
+        await db.query("INSERT INTO employees SET ?", employee);
+        console.log("Employee Added Successfully!");
+        activateApp();
+    } catch (err) {
+        console.log(err)
+        }
+}
+
+
 
 
 activateApp()
