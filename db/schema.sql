@@ -1,4 +1,4 @@
-DROP DATABASE IF EXISTS employee_tracker 
+DROP DATABASE IF EXISTS employee_tracker; 
 CREATE DATABASE employee_tracker;
 
 USE employee_tracker;
@@ -13,8 +13,8 @@ CREATE TABLE role (
     id INT AUTO_INCREMENT,
     title VARCHAR(30) NOT NULL,
     salary DECIMAL(10, 2) NOT NULL,
-    department_id INT
-    PRIMARY KEY(id)
+    department_id INT,
+    PRIMARY KEY(id),
     FOREIGN KEY(department_id)
         REFERENCES department(id)
         ON UPDATE CASCADE
@@ -22,7 +22,7 @@ CREATE TABLE role (
 );
 
 CREATE TABLE employee (
-id INT AUTO_INCREMENT
+id INT AUTO_INCREMENT,
 first_name VARCHAR(30) NOT NULL,
 last_name VARCHAR(30) NOT NULL,
 role_id INT,
