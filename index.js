@@ -103,7 +103,7 @@ async function viewAllRoles() {
 }
 
 async function viewAllEmployees() {
-    const employees = await db.query(`
+    const [employees] = await db.query(`
         SELECT
             employee.id,
             employee.first_name,
@@ -119,7 +119,7 @@ async function viewAllEmployees() {
             LEFT JOIN department 
             ON role.department_id = department.id;
             `);
-        console.log(employees)
+        //console.log(employees)
     const table = new Table(TABLE_HEADERS.EMPLOYEES);
     employees.forEach(row => {
         if (row.manager === null) {
@@ -212,11 +212,18 @@ async function addAnEmployee() {
 }
 
 async function updateAnEmployeeRole() {
+    let employeeData = await db.query ("SELECT * FROM employee")
+   // console.log(employeeData)
+    const employeeChoices = employeeData[0].map(({id, first_name, last_name})=> ({
+        name: first_name + " " + last_name,
+        value: id 
+    }))
     const employee = await inquirer.prompt([
         {
             name: "id",
-            type: "number",
-            message: "Enter employee ID"
+            type: "list",
+            message: " Select an employee",
+            choices: employeeChoices
         },
         {
             name: "role_id",
@@ -233,8 +240,6 @@ async function updateAnEmployeeRole() {
         console.log(err)
     }
 }
-
-
 
 
 activateApp()
