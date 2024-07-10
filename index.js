@@ -211,6 +211,29 @@ async function addAnEmployee() {
         }
 }
 
+async function updateAnEmployeeRole() {
+    const employee = await inquirer.prompt([
+        {
+            name: "id",
+            type: "number",
+            message: "Enter employee ID"
+        },
+        {
+            name: "role_id",
+            type: "number",
+            message: "Enter new role ID"
+        }
+    ]);
+
+    try {
+        await db.query("UPDATE employee SET role_id =? WHERE id =?", [employee.role_id, employee.id]);
+        console.log("Employee role updated successfully!");
+        activateApp();
+    } catch (err) {
+        console.log(err)
+    }
+}
+
 
 
 
