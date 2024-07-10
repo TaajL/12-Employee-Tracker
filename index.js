@@ -69,35 +69,35 @@ async function activateApp() {
 
 async function viewAllDepartments() {
     try {
-        const departments = await db.query("SELECT * FROM department");
+        const [departments] = await db.query("SELECT * FROM department");
         const table = new Table(TABLE_HEADERS.DEPARTMENTS);
-        console.log(departments)
-        const result = departments.map(row => table.push([row.id, row.name]));
-        console.log(result)
+        
+        departments.forEach(row => {
+            table.push([row.id, row.name]);
+        });
+
         console.log(table.toString());
-        if (result) {
-            activateApp();
-
-        }
-
+        activateApp();
     } catch (err) {
-        console.log(err)
+        console.log(err);
     }
 }
 
 async function viewAllRoles() {
-    const roles = await db.query(`
+    const [roles] = await db.query(`
         SELECT
             role.id,
-            title,
-            department.name AS "department_name",
-            salary
+            role.title,
+            department.name AS department_name,
+            role.salary
         FROM role
         INNER JOIN department
-        ON role.department_id =department.id;
+        ON role.department_id = department.id;
     `);
+
     const table = new Table(TABLE_HEADERS.ROLES);
     roles.forEach(row => table.push([row.id, row.title, row.department_name, row.salary]));
+    
     console.log(table.toString());
     activateApp();
 }
