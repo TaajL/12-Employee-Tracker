@@ -7,7 +7,7 @@ SO THAT I can organize and plan my business
 
 
 ## Deployed Application 
-[Walkthrough Video]()
+[Walkthrough Video](https://drive.google.com/file/d/17BUCT1Iv_cWhMnWBQvxXrL0S7bCJVaix/view)
 
 [Github Repo ](https://github.com/TaajL/12-Employee-Tracker)
 
