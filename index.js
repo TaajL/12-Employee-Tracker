@@ -213,11 +213,19 @@ async function addAnEmployee() {
 
 async function updateAnEmployeeRole() {
     let employeeData = await db.query ("SELECT * FROM employee")
-   // console.log(employeeData)
+    //console.log(employeeData)
     const employeeChoices = employeeData[0].map(({id, first_name, last_name})=> ({
         name: first_name + " " + last_name,
         value: id 
     }))
+
+    let roleData = await db.query("SELECT * FROM role");
+//console.log(roleData)
+const roleChoices = roleData.map(({ id, title }) => ({
+  name: title,
+  value: id,
+}));
+
     const employee = await inquirer.prompt([
         {
             name: "id",
@@ -239,6 +247,7 @@ async function updateAnEmployeeRole() {
     } catch (err) {
         console.log(err)
     }
+
 }
 
 

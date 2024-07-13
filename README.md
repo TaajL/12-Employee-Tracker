@@ -12,7 +12,6 @@ SO THAT I can organize and plan my business
 [Github Repo ](https://github.com/TaajL/12-Employee-Tracker)
 
 
- ![screenshot]()
 
 ## Installation 
 Node.js is needed to be able to run this code in the terminal.
